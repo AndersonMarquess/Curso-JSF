@@ -3,5 +3,16 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>JSF Curso Alura</display-name>
+	<display-name>JSF Curso Alura</display-name>
+
+	<servlet>
+		<servlet-name>Faces Servelet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class><!-- Classe da implementação Mojarra -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servelet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
 </web-app>
