@@ -2,9 +2,11 @@ package com.andersonmarques.jsf.bean;
 
 import javax.faces.bean.ManagedBean;
 
+import com.andersonmarques.jsf.dao.DAO;
 import com.andersonmarques.jsf.model.Livro;
 
 //Informa que a classe é gerenciada pelo JSF
+@SuppressWarnings("deprecation")
 @ManagedBean
 public class LivroBean {
 	
@@ -16,6 +18,6 @@ public class LivroBean {
 	}
 
 	public void gravar() {
-		System.out.println("Livro recebido com sucesso! " + livro.getTitulo());
+		new DAO<Livro>().gravar(livro);
 	}
 }

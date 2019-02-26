@@ -4,6 +4,12 @@
 
 <web-app>
 	<display-name>JSF Curso Alura</display-name>
+	
+	<!-- Ignora os comentarios nos arquivo xhtml -->
+	<context-param>
+	    <param-name>facelets.SKIP_COMMENTS</param-name>
+	    <param-value>true</param-value>
+	</context-param>
 
 	<servlet>
 		<servlet-name>Faces Servelet</servlet-name>

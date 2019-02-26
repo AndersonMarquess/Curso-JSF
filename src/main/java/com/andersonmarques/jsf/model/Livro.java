@@ -1,6 +1,16 @@
 package com.andersonmarques.jsf.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity(name="livros")
 public class Livro {
+	
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
 	private String titulo;
 	private String isbn;
 	private double preco;

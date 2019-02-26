@@ -9,7 +9,7 @@
 	<name>JSF Curso Alura</name>
 
 	<dependencies>
-		<!-- Implementação do JSF - mojarra -->
+		<!-- Implementação do JSF - Mojarra -->
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
@@ -17,18 +17,41 @@
 		</dependency>
 
 		<!-- Corrige a exceção (ClassNotFound) ao tentar subir projeto -->
-		<dependency> 
-		    <groupId>javax.enterprise</groupId> 
-		    <artifactId>cdi-api</artifactId> 
-		    <version>1.2</version> 
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>1.2</version>
 		</dependency>
-		
+
 		<!-- Extensão para a biblioteca gráfica do JSF -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>6.2</version>
 		</dependency>
+
+		<!-- Implementação da JPA - Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.1.Final</version>
+		</dependency>
+
+		<!-- MySQL Connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.15</version>
+		</dependency>
+
+		<!-- EJB -->
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>ejb-api</artifactId>
+			<version>3.0</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
