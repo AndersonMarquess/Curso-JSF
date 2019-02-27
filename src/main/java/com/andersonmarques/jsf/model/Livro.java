@@ -1,10 +1,14 @@
 package com.andersonmarques.jsf.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
-@Entity(name="livros")
+@Entity
 public class Livro {
 	
 	@Id
@@ -15,9 +19,11 @@ public class Livro {
 	private String isbn;
 	private double preco;
 	private String dataLancamento;
+	
+	@ManyToMany
+	private List<Autor> autores = new ArrayList<>();
 
-	public Livro() {
-	}
+	public Livro() {}
 
 	public String getTitulo() {
 		return titulo;
@@ -49,5 +55,17 @@ public class Livro {
 
 	public void setDataLancamento(String dataLancamento) {
 		this.dataLancamento = dataLancamento;
+	}
+
+	public List<Autor> getAutores() {
+		return autores;
+	}
+
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
+	}
+	
+	public void adicionarAutor(Autor autor) {
+		this.autores.add(autor);
 	}
 }

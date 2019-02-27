@@ -18,6 +18,10 @@ public class LivroBean {
 	}
 
 	public void gravar() {
-		new DAO<Livro>().gravar(livro);
+		if(livro.getAutores().isEmpty()) {
+            throw new RuntimeException("O livro deve ter pelo menos um Autor");
+        }
+		
+		new DAO<Livro>(Livro.class).gravar(livro);
 	}
 }
