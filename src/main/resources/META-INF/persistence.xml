@@ -7,11 +7,11 @@
     <persistence-unit name="exemplo-apostila-caelum" transaction-type="RESOURCE_LOCAL">
 	
 		<!-- provedor/implementacao da JPA -->
-    	<provider>org.hibernate.ejb.HibernatePersistence</provider>  
+    	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>  
 
 		<properties>
 			<!-- dados da conexao -->
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/jsf?serverTimezone=UTC" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="" />
