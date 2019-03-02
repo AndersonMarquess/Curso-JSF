@@ -5,10 +5,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 	
+	<!-- Necessário para trazer o arquivo com as funções do ajax -->
+	<h:head/>
+	
 <h:body>
 	<h:form>
 		
-		<h:messages/>
+		<h:messages id="mensagens"/>
 		
 		<fieldset>
 			<legend>Dados do livro</legend>
@@ -17,11 +20,15 @@
 				<h:inputText id="titulo" value="#{livroBean.livro.titulo}" required="true" requiredMessage="O Título é obrigatório."
 					validatorMessage="O Título não pode possuir mais de 40 caracteres.">
 					<f:validateLength maximum="40"/>
+					<!-- Envia quando o campo perde o foco  -->
+					<f:ajax event="blur" render="mensagens"/>
 				</h:inputText>
 
 				<h:outputLabel value="ISBN: " for="isbn" />
 				<!-- validator personalizado criado dentro da bean -->
-				<h:inputText id="isbn" value="#{livroBean.livro.isbn}" validator="#{livroBean.comecaComDigitoUm}"/>
+				<h:inputText id="isbn" value="#{livroBean.livro.isbn}" validator="#{livroBean.comecaComDigitoUm}">
+					<f:ajax event="blur" render="mensagens"/>
+				</h:inputText>
 
 				<h:outputLabel value="Preço: " for="preco" />
 				<h:inputText id="preco" value="#{livroBean.livro.preco}" validatorMessage="O preço deve estar entre R$ 1 e R$ 1000">
@@ -43,8 +50,14 @@
 				<f:selectItems value="#{livroBean.autores}" var="autor"
 					itemLabel="#{autor.nome}" itemValue="#{autor.id}" />
 			</h:selectOneMenu>
-			<h:commandButton value="Gravar Autor" action="#{livroBean.gravarAutor}" />
-			<h:dataTable value="#{livroBean.autoresDoLivro}" var="autor">
+			
+			<!-- Requisição assincrona com ajax-->
+			<h:commandButton value="Gravar Autor" action="#{livroBean.gravarAutor}">
+				<!-- Envia os dados do campo com id autor e atualiza a view com id tabela-autores -->
+				<f:ajax execute="autor" render="tabela-autores"/>
+			</h:commandButton>
+			
+			<h:dataTable value="#{livroBean.autoresDoLivro}" var="autor" id="tabela-autores">
 				<h:column>
 					<h:outputText value="#{autor.nome}" />
 				</h:column>
@@ -52,10 +65,15 @@
 		</fieldset>
 
 		<!-- action=#{} Chama o método gravar da classe LivroBean -->
-		<h:commandButton value="Salvar" action="#{livroBean.gravar}" />
+		<h:commandButton value="Salvar" action="#{livroBean.gravar}">
+			<!-- Envio de multiplos IDs -->
+			<!-- <f:ajax execute="titulo isbn lancamento"/> -->
+			<!-- Envio do form completo :para procurar no caminho absoluto -->
+			<f:ajax execute="@form" render="@form :tabela-livros"/>
+		</h:commandButton>
 	</h:form>
 
-	<p:dataTable var="livro" value="#{livroBean.livros}">
+	<p:dataTable var="livro" value="#{livroBean.livros}" id="tabela-livros">
 		<p:column headerText="Título">
 			<h:outputText value="#{livro.titulo}" />
 		</p:column>
@@ -72,7 +90,9 @@
 		</p:column>
 
 		<p:column headerText="Data Lançamento">
-			 <p:calendar value="#{livro.dataLancamento.time}" pattern="dd/MM/yyyy" mask="true" readonly="true"/>
+			 <h:outputText value="#{livro.dataLancamento.time}" readonly="true">
+			 	<f:convertDateTime pattern="dd/MM/yyyy" />			
+			 </h:outputText>
 		</p:column>
 	</p:dataTable>
 </h:body>
