@@ -1,5 +1,9 @@
 package com.andersonmarques.jsf;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import com.andersonmarques.jsf.dao.DAO;
 import com.andersonmarques.jsf.model.Autor;
 import com.andersonmarques.jsf.model.Livro;
@@ -57,9 +61,16 @@ public class Main {
 		Livro livro = new Livro();
 		livro.setIsbn(isbn);
 		livro.setTitulo(titulo);
-		livro.setDataLancamento(data);
 		livro.setPreco(preco);
 		livro.adicionarAutor(autor);
+		Calendar calendar = Calendar.getInstance();
+		try {
+			calendar.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(data));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		livro.setDataLancamento(calendar);
 		return livro;
 	}
 }
