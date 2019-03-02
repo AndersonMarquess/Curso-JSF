@@ -4,7 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-
+	
 <h:body>
 	<h:form>
 		
@@ -20,7 +20,8 @@
 				</h:inputText>
 
 				<h:outputLabel value="ISBN: " for="isbn" />
-				<h:inputText id="isbn" value="#{livroBean.livro.isbn}" />
+				<!-- validator personalizado criado dentro da bean -->
+				<h:inputText id="isbn" value="#{livroBean.livro.isbn}" validator="#{livroBean.comecaComDigitoUm}"/>
 
 				<h:outputLabel value="Preço: " for="preco" />
 				<h:inputText id="preco" value="#{livroBean.livro.preco}" />
@@ -40,9 +41,7 @@
 				<f:selectItems value="#{livroBean.autores}" var="autor"
 					itemLabel="#{autor.nome}" itemValue="#{autor.id}" />
 			</h:selectOneMenu>
-			<h:commandButton value="Gravar Autor"
-				action="#{livroBean.gravarAutor}" />
-
+			<h:commandButton value="Gravar Autor" action="#{livroBean.gravarAutor}" />
 			<h:dataTable value="#{livroBean.autoresDoLivro}" var="autor">
 				<h:column>
 					<h:outputText value="#{autor.nome}" />

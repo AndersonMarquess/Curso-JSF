@@ -2,8 +2,12 @@ package com.andersonmarques.jsf.bean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import com.andersonmarques.jsf.dao.DAO;
 import com.andersonmarques.jsf.model.Autor;
@@ -51,10 +55,23 @@ public class LivroBean {
 
 	public void gravar() {
 		if (livro.getAutores().isEmpty()) {
-			throw new RuntimeException("O livro deve ter pelo menos um Autor");
+			//throw new RuntimeException("O livro deve ter pelo menos um Autor");
+			FacesContext.getCurrentInstance().addMessage("autor", new FacesMessage("O livro deve ter pelo menos um Autor"));
 		}
-
+		
 		new DAO<Livro>(Livro.class).gravar(livro);
 		livro = new Livro();
+	}
+	
+	/**
+	 * Validação personalizada.
+	 * @param facesContext
+	 * @param component
+	 * @param value
+	 */
+	public void comecaComDigitoUm(FacesContext facesContext, UIComponent component, Object value) {
+		if(!value.toString().startsWith("1")) {
+			throw new ValidatorException(new FacesMessage("Deveria começar com 1"));
+		}
 	}
 }
