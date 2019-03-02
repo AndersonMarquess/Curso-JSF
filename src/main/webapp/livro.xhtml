@@ -24,12 +24,14 @@
 				<h:inputText id="isbn" value="#{livroBean.livro.isbn}" validator="#{livroBean.comecaComDigitoUm}"/>
 
 				<h:outputLabel value="Preço: " for="preco" />
-				<h:inputText id="preco" value="#{livroBean.livro.preco}" />
+				<h:inputText id="preco" value="#{livroBean.livro.preco}" validatorMessage="O preço deve estar entre R$ 1 e R$ 1000">
+					<f:validateDoubleRange minimum="1" maximum="1000"/>
+				</h:inputText>
 
 				<h:outputLabel value="Data de lançamento: " for="lancamento" />
 				<!-- value=#{} faz o binding de input com o atributo presente no livro -->
 				<h:inputText id="lancamento" value="#{livroBean.livro.dataLancamento.time}">
-					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>					
+					<f:convertDateTime pattern="dd/MM/yyyy" />					
 				</h:inputText>
 			</h:panelGrid>
 		</fieldset>
@@ -67,7 +69,7 @@
 		</p:column>
 
 		<p:column headerText="Data Lançamento">
-			 <p:calendar value="#{livro.dataLancamento.time}" pattern="dd-MM-yyyy" mask="true" readonly="true"/>
+			 <p:calendar value="#{livro.dataLancamento.time}" pattern="dd/MM/yyyy" mask="true" readonly="true"/>
 		</p:column>
 	</p:dataTable>
 </h:body>
