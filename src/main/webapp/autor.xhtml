@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 	<h:body>
 		<h2>Novo Autor</h2>
+		<h:messages/>
 		<h:form>
 			<fieldset>
 				<legend>Dados autor</legend>
 				<h:panelGrid columns="2">
 					<h:outputLabel for="nome" value="Nome: " />
-					<h:inputText id="nome" value="#{autorBean.autor.nome}" />
+					<h:inputText id="nome" value="#{autorBean.autor.nome}" required="true" requiredMessage="O Nome é obrigatório"
+						validatorMessage="O nome deve possuir entre 5 e 40 caracteres">
+						<f:validateLength minimum="5" maximum="40"/>
+					</h:inputText>
 					<h:commandButton action="#{autorBean.gravar}" value="Salvar" />
 				</h:panelGrid>
 			</fieldset>

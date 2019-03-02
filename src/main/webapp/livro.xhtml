@@ -65,7 +65,10 @@
 		</p:column>
 
 		<p:column headerText="Preço">
-			<h:outputText value="#{livro.preco}" />
+			<h:outputText value="#{livro.preco}">
+				<!-- Mask para o campo preço do livro -->
+				<f:convertNumber type="currency" pattern="R$ #0.00" currencySymbol="R$" locale="pt_BR"/>
+			</h:outputText>
 		</p:column>
 
 		<p:column headerText="Data Lançamento">
