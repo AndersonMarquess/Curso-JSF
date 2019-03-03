@@ -14,15 +14,23 @@
 		<h:panelGrid columns="2" cellpadding="10">
 			<!-- library pasta dentro de resources chamada img -->
 			<!-- <h:graphicImage library="img" name="books.png" style="width: 72px;" /> -->
-			<p:graphicImage name="/img/books.png" style="width: 72px;"/>
-			
+			<p:graphicImage name="/img/books.png" style="width: 72px;" />
+
 			<!-- Valor dinâmico -->
-			<ui:insert name="titulo-pagina"/>
+			<ui:insert name="titulo-pagina" />
 		</h:panelGrid>
 	</div>
 
 	<div id="conteudo-pagina">
 		<ui:insert name="conteudo" />
+	</div>
+
+	<div id="rodape-pagina">
+		<div class="ui-g">
+	    	<div class="ui-g-12" style="text-align: center;">
+				Copyright 2019 - Curso JSF - <ui:insert name="rodape" />
+			</div>
+		</div>
 	</div>
 </h:body>
 
