@@ -12,6 +12,7 @@ import javax.faces.validator.ValidatorException;
 import com.andersonmarques.jsf.dao.DAO;
 import com.andersonmarques.jsf.model.Autor;
 import com.andersonmarques.jsf.model.Livro;
+import com.andersonmarques.jsf.util.RedirecionarPagina;
 
 //Informa que a classe é gerenciada pelo JSF
 @SuppressWarnings("deprecation")
@@ -53,7 +54,7 @@ public class LivroBean {
 		return livro;
 	}
 
-	public void gravar() {
+	public String gravar() {
 		if (livro.getAutores().isEmpty()) {
 			//throw new RuntimeException("O livro deve ter pelo menos um Autor");
 			FacesContext.getCurrentInstance().addMessage("autor", new FacesMessage("O livro deve ter pelo menos um Autor"));
@@ -61,6 +62,13 @@ public class LivroBean {
 		
 		new DAO<Livro>(Livro.class).gravar(livro);
 		livro = new Livro();
+		
+		return RedirecionarPagina.destino("livro");
+	}
+	
+	public String formAutor() {
+		//redireciona para autor.xhtml
+		return RedirecionarPagina.destino("autor");
 	}
 	
 	/**

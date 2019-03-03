@@ -17,6 +17,10 @@
 						<f:validateLength minimum="5" maximum="40"/>
 					</h:inputText>
 					<h:commandButton action="#{autorBean.gravar}" value="Salvar" />
+					
+					<br/>
+					
+					<h:commandLink value="Cadastrar livro" action="#{autorBean.formLivro}" immediate="true"/>
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
