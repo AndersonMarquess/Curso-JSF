@@ -30,9 +30,10 @@ public class DAO<T> {
 		fecharConexao();
 	}
 	
-	public void remover(T t) {
+	public void remover(Integer id) {
 		iniciarTransacao();
-		entityManager.remove(t);
+		T recuperado = entityManager.find(classe, id);
+		entityManager.remove(recuperado);
 		entityManager.getTransaction().commit();
 		fecharConexao();
 	}
