@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<h:head />
+
+<h:body>
+	<!-- Template -->
+	<div id="cabecalho">
+		<h:panelGrid columns="2" cellpadding="10">
+			<!-- library pasta dentro de resources chamada img -->
+			<!-- <h:graphicImage library="img" name="books.png" style="width: 72px;" /> -->
+			<p:graphicImage name="/img/books.png" style="width: 72px;"/>
+			
+			<!-- Valor dinâmico -->
+			<ui:insert name="titulo-pagina"/>
+		</h:panelGrid>
+	</div>
+
+	<div id="conteudo-pagina">
+		<ui:insert name="conteudo" />
+	</div>
+</h:body>
+
+</html>
