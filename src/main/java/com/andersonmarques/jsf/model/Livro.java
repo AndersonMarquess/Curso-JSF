@@ -28,6 +28,10 @@ public class Livro {
 	private List<Autor> autores = new ArrayList<>();
 
 	public Livro() {}
+	
+	public Integer getId() {
+		return id;
+	}
 
 	public String getTitulo() {
 		return titulo;

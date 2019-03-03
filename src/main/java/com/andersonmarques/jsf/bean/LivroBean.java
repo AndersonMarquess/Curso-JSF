@@ -66,6 +66,10 @@ public class LivroBean {
 		return RedirecionarPagina.destino("livro");
 	}
 	
+	public void remover(Livro livro) {
+		new DAO<Livro>(Livro.class).remover(livro.getId());
+	}
+	
 	public String formAutor() {
 		//redireciona para autor.xhtml
 		return RedirecionarPagina.destino("autor");
