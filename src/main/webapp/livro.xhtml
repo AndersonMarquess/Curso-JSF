@@ -81,32 +81,46 @@
 				<!-- Envio de multiplos IDs -->
 				<!-- <f:ajax execute="titulo isbn lancamento"/> -->
 				<!-- Envio do form completo :para procurar no caminho absoluto -->
-				<f:ajax execute="@form" render="@form :tabela-livros"/>
+				<f:ajax execute="@form" render="@form :formTabelaLivros:tabela-livros"/>
 			</h:commandButton>
 		</h:form>
 	
-		<p:dataTable var="livro" value="#{livroBean.livros}" id="tabela-livros">
-			<p:column headerText="Título">
-				<h:outputText value="#{livro.titulo}" />
-			</p:column>
-	
-			<p:column headerText="ISBN">
-				<h:outputText value="#{livro.isbn}" />
-			</p:column>
-	
-			<p:column headerText="Preço">
-				<h:outputText value="#{livro.preco}">
-					<!-- Mask para o campo preço do livro -->
-					<f:convertNumber type="currency" pattern="R$ #0.00" currencySymbol="R$" locale="pt_BR"/>
-				</h:outputText>
-			</p:column>
-	
-			<p:column headerText="Data Lançamento">
-				 <h:outputText value="#{livro.dataLancamento.time}" readonly="true">
-				 	<f:convertDateTime pattern="dd/MM/yyyy" />			
-				 </h:outputText>
-			</p:column>
-		</p:dataTable>
+		<h:form id="formTabelaLivros">
+			<p:dataTable var="livro" value="#{livroBean.livros}" id="tabela-livros">
+				<p:column headerText="Título">
+					<h:outputText value="#{livro.titulo}" />
+				</p:column>
+		
+				<p:column headerText="ISBN">
+					<h:outputText value="#{livro.isbn}" />
+				</p:column>
+		
+				<p:column headerText="Preço">
+					<h:outputText value="#{livro.preco}">
+						<!-- Mask para o campo preço do livro -->
+						<f:convertNumber type="currency" pattern="R$ #0.00" currencySymbol="R$" locale="pt_BR"/>
+					</h:outputText>
+				</p:column>
+		
+				<p:column headerText="Data Lançamento">
+					 <h:outputText value="#{livro.dataLancamento.time}" readonly="true">
+					 	<f:convertDateTime pattern="dd/MM/yyyy" />			
+					 </h:outputText>
+				</p:column>
+				
+				<p:column headerText="Remover">
+					<p:commandButton id="remover" value="Remover" action="#{livroBean.remover(livro)}">
+						<p:confirm header="Remover livro" message="Deseja realmente remover este livro?"/>
+						<f:ajax execute="remover" render="tabela-livros"/>
+					</p:commandButton>
+					
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				        <p:commandButton value="Confirmar" type="button" styleClass="ui-confirmdialog-yes"/>
+				        <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no"/>
+				    </p:confirmDialog>    
+				</p:column>
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 	
 	<ui:define name="rodape">
