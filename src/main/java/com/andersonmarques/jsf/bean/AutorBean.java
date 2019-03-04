@@ -24,8 +24,12 @@ public class AutorBean {
 	}
 	
 	public String gravar() {
-		autorDAO.gravar(autor);
-		autor = new Autor();
+		if(autor.getId() != null) {
+			autorDAO.atualizar(autor);
+		} else {
+			autorDAO.gravar(autor);
+			autor = new Autor();
+		}
 		
 		return RedirecionarPagina.destino("autor");
 	}
@@ -37,6 +41,10 @@ public class AutorBean {
 	
 	public List<Autor> getAutores() {
 		return autorDAO.listarTodos();
+	}
+	
+	public void editar(Autor autor) {
+		this.autor = autor;
 	}
 	
 	public String remover(Autor autor) {

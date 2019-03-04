@@ -43,6 +43,8 @@
 				</p:column>
 				
 				<p:column headerText="Opções">
+					<p:commandButton value="Editar" action="#{autorBean.editar(autor)}" ajax="false"/>
+				
 					<p:commandButton value="Remover" action="#{autorBean.remover(autor)}">
 						<p:confirm header="Remover autor" message="Deseja realmente remover o autor?"/>
 					</p:commandButton>
