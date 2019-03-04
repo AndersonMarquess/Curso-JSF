@@ -59,7 +59,8 @@ public class LivroBean {
 	public String gravar() {
 		if (livro.getAutores().isEmpty()) {
 			//throw new RuntimeException("O livro deve ter pelo menos um Autor");
-			FacesContext.getCurrentInstance().addMessage("mensagens", new FacesMessage("O livro deve ter pelo menos um Autor"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("O livro deve ter pelo menos um Autor"));
+			return null;
 		} else if(livro.getId() != null) {
 			livroDAO.atualizar(livro);
 		} else {
@@ -94,7 +95,7 @@ public class LivroBean {
 	 */
 	public void comecaComDigitoUm(FacesContext facesContext, UIComponent component, Object value) {
 		if(!value.toString().startsWith("1")) {
-			throw new ValidatorException(new FacesMessage("ISBN deveria começar com 1"));
+			throw new ValidatorException(new FacesMessage("ISBN deve começar com 1"));
 		}
 	}
 }
