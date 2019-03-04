@@ -32,10 +32,21 @@
 			</fieldset>
 		</h:form>
 		
-		<h:form>
+		<h:form id="lista-autores">
 			<p:dataTable var="autor" value="#{autorBean.autores}">
 				<p:column headerText="Nome">
 					<h:outputText value="#{autor.nome}"/>
+				</p:column>
+				
+				<p:column headerText="Opções">
+					<p:commandButton value="Remover" action="#{autorBean.remover(autor)}">
+						<p:confirm header="Remover autor" message="Deseja realmente remover o autor?"/>
+					</p:commandButton>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Confirmar" type="button" styleClass="ui-confirmdialog-yes"/>
+						<p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no"/>
+					</p:confirmDialog>
 				</p:column>
 			</p:dataTable>
 		</h:form>

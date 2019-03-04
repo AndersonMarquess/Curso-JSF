@@ -102,4 +102,12 @@ public class DAO<T> {
 			entityManager.close();
 		}
 	}
+
+	public Integer qtdLivroAutor(Integer id) {
+		abrirConexao();
+		String sql = "SELECT Count(*) FROM livro_autor n WHERE n.autores_id = :pId";
+		Object resultado = entityManager.createNativeQuery(sql).setParameter("pId", id).getSingleResult();
+		fecharConexao();
+		return Integer.parseInt(resultado.toString());
+	}
 }
