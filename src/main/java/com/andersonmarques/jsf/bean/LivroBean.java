@@ -59,16 +59,14 @@ public class LivroBean {
 	public String gravar() {
 		if (livro.getAutores().isEmpty()) {
 			//throw new RuntimeException("O livro deve ter pelo menos um Autor");
-			FacesContext.getCurrentInstance().addMessage("autor", new FacesMessage("O livro deve ter pelo menos um Autor"));
-		}
-		
-		if(livro.getId() != null) {
+			FacesContext.getCurrentInstance().addMessage("mensagens", new FacesMessage("O livro deve ter pelo menos um Autor"));
+		} else if(livro.getId() != null) {
 			livroDAO.atualizar(livro);
 		} else {
 			livroDAO.gravar(livro);
+			livro = new Livro();
 		}
 
-		livro = new Livro();
 		return RedirecionarPagina.destino("livro");
 	}
 	
@@ -76,12 +74,15 @@ public class LivroBean {
 		this.livro = livro;
 	}
 	
+	public void removerAutorLivro(Autor autor) {
+		livro.removerAutor(autor);
+	}
+	
 	public void remover(Livro livro) {
 		livroDAO.remover(livro.getId());
 	}
 	
 	public String formAutor() {
-		//redireciona para autor.xhtml
 		return RedirecionarPagina.destino("autor");
 	}
 	

@@ -78,6 +78,10 @@ public class Livro {
 		this.autores.add(autor);
 	}
 
+	public void removerAutor(Autor autor) {
+		autores.remove(autor);
+	}
+
 	@Override
 	public String toString() {
 		return String.format("Livro [id=%s, titulo=%s, isbn=%s, preco=%s, dataLancamento=%s, autores=%s]", id, titulo,

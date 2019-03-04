@@ -18,6 +18,7 @@
 	
 	<ui:define name="conteudo">
 		<h:form>
+		
 			<h:messages id="mensagens"/>
 			
 			<fieldset>
@@ -70,8 +71,11 @@
 				<h:commandLink value="Cadastrar novo autor" action="#{livroBean.formAutor}" immediate="true"/>
 				
 				<h:dataTable value="#{livroBean.autoresDoLivro}" var="autor" id="tabela-autores">
-					<h:column>
+					<h:column rowHeader="Nome do autor">
 						<h:outputText value="#{autor.nome}" />
+					</h:column>
+					<h:column rowHeader="Remover">
+						<h:commandButton value="Remover" action="#{livroBean.removerAutorLivro(autor)}"/>
 					</h:column>
 				</h:dataTable>
 			</fieldset>
