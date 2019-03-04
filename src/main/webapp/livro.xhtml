@@ -116,9 +116,9 @@
 					<!-- Desabilitar o ajax corrige o binding do livro para edição -->
 					<p:commandButton id="editar" value="Editar" action="#{livroBean.editar(livro)}" ajax="false"/>
 					
-					<p:commandButton id="remover" value="Remover" action="#{livroBean.remover(livro)}">
+					<!-- Botão com ajax nativo -->
+					<p:commandButton id="remover" value="Remover" action="#{livroBean.remover(livro)}" update="tabela-livros">
 						<p:confirm header="Remover livro" message="Deseja realmente remover este livro?"/>
-						<f:ajax execute="remover" render="tabela-livros"/>
 					</p:commandButton>
 					
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
