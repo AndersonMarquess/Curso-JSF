@@ -13,7 +13,11 @@
 	</ui:define>
 	
 	<ui:define name="conteudo">
-		<h:messages/>
+		
+		<p:messages>
+			<p:autoUpdate/>
+		</p:messages>
+		
 		<h:form>
 			<fieldset>
 				<legend>Dados autor</legend>
@@ -32,7 +36,7 @@
 			</fieldset>
 		</h:form>
 		
-		<h:form id="lista-autores">
+		<h:form>
 			<p:dataTable var="autor" value="#{autorBean.autores}">
 				<p:column headerText="Nome">
 					<h:outputText value="#{autor.nome}"/>
@@ -42,7 +46,7 @@
 					<p:commandButton value="Remover" action="#{autorBean.remover(autor)}">
 						<p:confirm header="Remover autor" message="Deseja realmente remover o autor?"/>
 					</p:commandButton>
-
+	
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 						<p:commandButton value="Confirmar" type="button" styleClass="ui-confirmdialog-yes"/>
 						<p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no"/>

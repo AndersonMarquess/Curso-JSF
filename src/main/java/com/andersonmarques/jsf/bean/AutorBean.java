@@ -42,13 +42,11 @@ public class AutorBean {
 	public String remover(Autor autor) {
 		Integer qtdLivros = autorDAO.qtdLivroAutor(autor.getId());
 		if( qtdLivros > 0) {
-			System.out.println("autor possui livros: "+qtdLivros);
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage("Não é possível remover um autor que possui livro cadastrados."));
 			return null;
 		}
 		
-		System.out.println("Tentando remover autor: ");
 		autorDAO.remover(autor.getId());
 		return RedirecionarPagina.destino("autor");
 	}
