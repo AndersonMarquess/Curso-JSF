@@ -108,7 +108,10 @@
 					 </h:outputText>
 				</p:column>
 				
-				<p:column headerText="Remover">
+				<p:column headerText="Opções">
+					<!-- Desabilitar o ajax corrige o binding do livro para edição -->
+					<p:commandButton id="editar" value="Editar" action="#{livroBean.editar(livro)}" ajax="false"/>
+					
 					<p:commandButton id="remover" value="Remover" action="#{livroBean.remover(livro)}">
 						<p:confirm header="Remover livro" message="Deseja realmente remover este livro?"/>
 						<f:ajax execute="remover" render="tabela-livros"/>

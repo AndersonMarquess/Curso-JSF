@@ -20,6 +20,8 @@ import com.andersonmarques.jsf.util.RedirecionarPagina;
 @ManagedBean
 public class LivroBean {
 
+	private DAO<Autor> autorDAO = new DAO<Autor>(Autor.class);
+	private DAO<Livro> livroDAO = new DAO<Livro>(Livro.class);
 	private Livro livro = new Livro();
 	private Integer autorId;
 
@@ -32,11 +34,11 @@ public class LivroBean {
 	}
 
 	public List<Autor> getAutores() {
-		return new DAO<Autor>(Autor.class).listarTodos();
+		return autorDAO.listarTodos();
 	}
 
 	public void gravarAutor() {
-		Autor autor = new DAO<Autor>(Autor.class).buscarPorId(autorId);
+		Autor autor = autorDAO.buscarPorId(autorId);
 		livro.adicionarAutor(autor);
 	}
 
@@ -45,7 +47,7 @@ public class LivroBean {
 	}
 
 	public List<Livro> getLivros() {
-		List<Livro> livros = new DAO<Livro>(Livro.class).listarTodos();
+		List<Livro> livros = livroDAO.listarTodos();
 		return livros;
 	}
 
@@ -60,14 +62,22 @@ public class LivroBean {
 			FacesContext.getCurrentInstance().addMessage("autor", new FacesMessage("O livro deve ter pelo menos um Autor"));
 		}
 		
-		new DAO<Livro>(Livro.class).gravar(livro);
+		if(livro.getId() != null) {
+			livroDAO.atualizar(livro);
+		} else {
+			livroDAO.gravar(livro);
+		}
+
 		livro = new Livro();
-		
 		return RedirecionarPagina.destino("livro");
 	}
 	
+	public void editar(Livro livro) {
+		this.livro = livro;
+	}
+	
 	public void remover(Livro livro) {
-		new DAO<Livro>(Livro.class).remover(livro.getId());
+		livroDAO.remover(livro.getId());
 	}
 	
 	public String formAutor() {
