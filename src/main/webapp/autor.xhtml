@@ -34,6 +34,13 @@
 						validatorMessage="O nome deve possuir entre 5 e 40 caracteres">
 						<f:validateLength minimum="5" maximum="40"/>
 					</h:inputText>
+					
+					<h:outputLabel for="email" value="Email: "/>
+					<h:inputText id="email" value="#{autorBean.autor.email}" required="true" requiredMessage="O Email é obrigatório">
+						<!-- Renderiza o html dentro do input o atributo "type" com valor "email" -->
+						<f:passThroughAttribute name="type" value="email"/>
+					</h:inputText>
+					
 					<h:commandButton action="#{autorBean.gravar}" value="Salvar" />
 					
 					<br/>
