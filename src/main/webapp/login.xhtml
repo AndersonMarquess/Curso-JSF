@@ -4,7 +4,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition template="_template.xhtml">
 
@@ -22,10 +23,10 @@
 			<p:fieldset legend="Login">
 				<h:panelGrid columns="2">
 					<p:outputLabel for="email" value="E-mail: "/>
-					<h:inputText id="email" value="#{usuarioBean.usuario.email}" required="true"
-						requiredMessage="O E-mail deve ser informado">
-						<f:passThroughAttribute name="type" value="email"/>
-					</h:inputText>
+					
+					<!-- Tag html com pass through elements -->					
+					<input jsf:id="email" type="email" jsf:value="#{usuarioBean.usuario.email}" jsf:required="true"
+						jsf:requiredMessage="O E-mail deve ser informado"/>
 
 					<p:outputLabel for="senha" value="Senha: "/>
 					<h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}" required="true" 
