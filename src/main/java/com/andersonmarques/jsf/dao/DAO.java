@@ -7,6 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 
+import com.andersonmarques.jsf.model.Usuario;
+
 /**
  * DAO com operações genéricas para ser usado por qualquer classe
  * @author Anderson
@@ -109,5 +111,16 @@ public class DAO<T> {
 		Object resultado = entityManager.createNativeQuery(sql).setParameter("pId", id).getSingleResult();
 		fecharConexao();
 		return Integer.parseInt(resultado.toString());
+	}
+
+	public boolean isUsuarioCadastrado(Usuario usuario) {
+		abrirConexao();
+		String sql = "SELECT Count(*) FROM usuario u WHERE u.email = :pEmail AND u.senha = :pSenha";
+		Object resultado = entityManager.createNativeQuery(sql)
+				.setParameter("pEmail", usuario.getEmail())
+				.setParameter("pSenha", usuario.getSenha())
+				.getSingleResult();
+		fecharConexao();
+		return Integer.parseInt(resultado.toString()) > 0;
 	}
 }
