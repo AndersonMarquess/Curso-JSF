@@ -24,6 +24,15 @@ public class LivroBean {
 	private DAO<Livro> livroDAO = new DAO<Livro>(Livro.class);
 	private Livro livro = new Livro();
 	private Integer autorId;
+	private Integer livroId;
+
+	public Integer getLivroId() {
+		return livroId;
+	}
+
+	public void setLivroId(Integer livroId) {
+		this.livroId = livroId;
+	}
 
 	public Integer getAutorId() {
 		return autorId;
@@ -35,6 +44,11 @@ public class LivroBean {
 
 	public List<Autor> getAutores() {
 		return autorDAO.listarTodos();
+	}
+	
+	public void carregarLivroPorId() {
+		System.out.println("Buscando livro por id");
+		livro = livroDAO.buscarPorId(livroId);
 	}
 
 	public void gravarAutor() {

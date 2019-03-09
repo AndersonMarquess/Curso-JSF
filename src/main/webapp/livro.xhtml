@@ -10,6 +10,12 @@
 
 <!-- Import do template -->
 <ui:composition template="_template.xhtml">
+
+	<!-- Carrega os dados do livro no primeiro get informando o id do livro -->
+	<f:metadata>
+		<f:viewParam name="livroId" value="#{livroBean.livroId}"/>
+		<f:viewAction action="#{livroBean.carregarLivroPorId}" if="#{param.livroId != null}"/>
+	</f:metadata>
 	
 	<!-- Faz a atribuição do valor no template -->
 	<ui:define name="titulo-pagina">
