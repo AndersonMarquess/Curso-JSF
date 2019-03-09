@@ -18,7 +18,20 @@ public class AutorBean {
 	
 	private DAO<Autor> autorDAO = new DAO<Autor>(Autor.class);
 	private Autor autor = new Autor();
+	private Integer autorId;
 	
+	public Integer getAutorId() {
+		return autorId;
+	}
+
+	public void setAutorId(Integer autorId) {
+		this.autorId = autorId;
+	}
+	
+	public void carregarAutorPorId() {
+		autor = autorDAO.buscarPorId(autorId);
+	}
+
 	public Autor getAutor() {
 		return autor;
 	}

@@ -7,6 +7,13 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="_template.xhtml">
+
+	<f:metadata>
+		<!-- Passa o valor do id por parâmetro da url autor.xhtml?autorId=23 -->
+		<f:viewParam name="autorId" value="#{autorBean.autorId}"/>
+		<!-- Chama este método ao passar o Id se o param "autorId" estiver preenchido-->
+		<f:viewAction action="#{autorBean.carregarAutorPorId}" if="#{param.autorId != null}"/>
+	</f:metadata>
 	
 	<ui:define name="titulo-pagina">
 		<h2>Novo Autor</h2>
