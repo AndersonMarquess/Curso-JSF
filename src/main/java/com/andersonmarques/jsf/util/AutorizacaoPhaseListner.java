@@ -26,6 +26,9 @@ public class AutorizacaoPhaseListner implements PhaseListener {
 		//caso contrario faz a navegação para página de login.
 		NavigationHandler handler = context.getApplication().getNavigationHandler();
 		handler.handleNavigation(context, null, paginaLogin);
+		
+		//Usado para pular partes do ciclo de vida e retornar a resposta direto
+		context.renderResponse();
 	}
 
 	private boolean isUsuarioLogado() {
