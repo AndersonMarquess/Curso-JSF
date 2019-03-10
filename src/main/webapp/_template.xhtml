@@ -18,6 +18,9 @@
 
 			<!-- Valor dinâmico -->
 			<ui:insert name="titulo-pagina" />
+		
+			<!-- Pega a variável do escopo da sessão -->
+			<h:outputLabel value="#{sessionScope['usuarioLogado'].email}" />
 		</h:panelGrid>
 	</div>
 
