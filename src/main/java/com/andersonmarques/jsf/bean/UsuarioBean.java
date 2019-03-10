@@ -22,10 +22,20 @@ public class UsuarioBean {
 	public String login() {
 		
 		if(usuarioDAO.isUsuarioCadastrado(usuario)) {
+			addUsuarioLogadoNaMemoria();
 			return RedirecionarPagina.destino("livro");
 		}
 		
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário inválido."));
 		return null;
+	}
+
+	/**
+	 * Adiciona o usuário em uma variável disponível para toda sessão
+	 */
+	private void addUsuarioLogadoNaMemoria() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		//Acessa variaveis disponiveis a toda sessão a nivel do Servlet
+		context.getExternalContext().getSessionMap().put("usuarioLogado", usuario);
 	}
 }
