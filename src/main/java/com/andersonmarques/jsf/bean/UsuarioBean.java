@@ -27,8 +27,10 @@ public class UsuarioBean {
 			return RedirecionarPagina.destino("livro");
 		}
 		
+		//Flash sobrevive a duas requisições
+		context.getExternalContext().getFlash().setKeepMessages(true);
 		context.addMessage(null, new FacesMessage("Usuário inválido."));
-		return null;
+		return RedirecionarPagina.destino("livro");
 	}
 
 	/**
