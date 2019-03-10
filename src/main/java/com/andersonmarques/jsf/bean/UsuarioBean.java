@@ -14,6 +14,7 @@ public class UsuarioBean {
 	
 	private DAO<Usuario> usuarioDAO = new DAO<>(Usuario.class); 
 	private Usuario usuario = new Usuario();
+	private FacesContext context = FacesContext.getCurrentInstance();
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -26,7 +27,7 @@ public class UsuarioBean {
 			return RedirecionarPagina.destino("livro");
 		}
 		
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário inválido."));
+		context.addMessage(null, new FacesMessage("Usuário inválido."));
 		return null;
 	}
 
@@ -34,8 +35,12 @@ public class UsuarioBean {
 	 * Adiciona o usuário em uma variável disponível para toda sessão
 	 */
 	private void addUsuarioLogadoNaMemoria() {
-		FacesContext context = FacesContext.getCurrentInstance();
 		//Acessa variaveis disponiveis a toda sessão a nivel do Servlet
 		context.getExternalContext().getSessionMap().put("usuarioLogado", usuario);
+	}
+	
+	public String logout() {
+		context.getExternalContext().getSessionMap().remove("usuarioLogado");
+		return RedirecionarPagina.destino("login");
 	}
 }

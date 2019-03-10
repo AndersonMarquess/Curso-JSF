@@ -21,6 +21,11 @@
 		
 			<!-- Pega a variável do escopo da sessão -->
 			<h:outputLabel value="#{sessionScope['usuarioLogado'].email}" />
+			
+			<!-- Renderiza o componente se a condição for true -->
+			<h:form rendered="#{sessionScope['usuarioLogado'] != null}">
+				<h:commandButton value="Logout" action="#{usuarioBean.logout}"/>
+			</h:form>
 		</h:panelGrid>
 	</div>
 
